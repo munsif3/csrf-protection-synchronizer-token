@@ -1,1 +1,29 @@
-<h1>HOME</h1>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bank Home</title>
+<meta name="viewport" http-equiv="Content-Type"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+</head>
+<body class="container">
+	<form action="transfer" method="POST">
+        <label>Account Number</label> 
+        <input name="accountNo" type="number"/>
+ 
+        <label>Amount</label>         
+        <input name="amount" type="number"/>
+ 
+        <input type="submit">
+    </form>
+	<script type="text/javascript" src="js/popper.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/sweetalert.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

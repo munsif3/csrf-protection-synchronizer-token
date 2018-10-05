@@ -3,7 +3,7 @@
   --input-padding-y: .75rem;
 }
 
-body {
+body.login-form {
   background: #9CECFB;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #7E0225, #A51632, #DD536E);
@@ -22,6 +22,12 @@ body {
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
+}
+
+.card-signin .site-name {
+  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 4rem;
 }
 
 .card-signin .card-body {
