@@ -11,15 +11,17 @@
 
 </head>
 <body class="container">
-	<form action="transfer" method="POST">
-        <label>Account Number</label> 
-        <input name="accountNo" type="number"/>
- 
-        <label>Amount</label>         
-        <input name="amount" type="number"/>
- 
-        <input type="submit">
-    </form>
+	<form action="#" th:action="@{/blog}" th:object="${blog}" method="post" name="blogpostForm" id="blogpostForm">
+		<div>
+			<label>Blog Name</label> <input name="blogname" type="text" />
+		</div>
+
+		<div>
+			<label>Body</label> <input name="blogbody" type="text" />
+		</div>
+
+		<input type="submit">
+	</form>
 	<script type="text/javascript" src="js/popper.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>

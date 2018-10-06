@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.munsif.ssd.csrfsynchronizer.model.Fund;
-import com.munsif.ssd.csrfsynchronizer.model.Credentials;
+import com.munsif.ssd.csrfsynchronizer.model.Blog;
+import com.munsif.ssd.csrfsynchronizer.model.User;
 import com.munsif.ssd.csrfsynchronizer.service.AuthenticationService;;
 
 @Controller
@@ -24,29 +24,37 @@ public class MainController {
 	private AuthenticationService authenticationService;
 
 	@PostMapping("/login")
-	public String login(@ModelAttribute Credentials credentials, HttpServletResponse response) {
+	public String login(@ModelAttribute User credentials, HttpServletResponse response) {
 		String username = credentials.getUsername();
 		String password = credentials.getPassword();
 
-		if (authenticationService.isUserAuthenticated(username, password)) {
-
+		if (authenticationService.isValidUser(username, password)) {
+			logger.debug("Successfully authenticated/validated user...");
 			Cookie sessionCookie = new Cookie("sessionID", authenticationService.generateSessionId(username));
-
+			Cookie userCookie = new Cookie("username", username);
 			response.addCookie(sessionCookie);
-			logger.debug("Authentication Successful...");
-			return "redirect:/home";
+			response.addCookie(userCookie);
+			return "redirect:/";
 		}
-		logger.debug("Authentication Failed...");
+		logger.debug("Failed to authenticate user...");
 		return "redirect:/login?status=failed";
 	}
 
-	@PostMapping("/transfer")
-	public String doTransfer(@ModelAttribute Fund fund, HttpServletRequest request) {
-		Cookie cookies[] = request.getCookies();
+	public String addBlog(@ModelAttribute Blog blog, HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String blogToken = blog.getToken();
 
-		logger.debug("In Home...", cookies.toString());
+		String sessionId = authenticationService.sessionIdFromCookies(cookies);
 
-		return "redirect:/home?status=success";
-
+		if (authenticationService.isAuthenticated(cookies)) {
+			if (authenticationService.validateCSRFToken(sessionId, blogToken)) {
+				logger.debug("Blog post successful. Session Token is validated...");
+				return "redirect:/home?status=success";
+			} else {
+				logger.debug("Session Token is Invalid...");
+			}
+		}
+		logger.debug("Session Cookie is Invalid...");
+		return "redirect:/home?status=failed";
 	}
 }

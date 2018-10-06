@@ -1,23 +1,34 @@
 package com.munsif.ssd.csrfsynchronizer.util;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
+@PropertySource("classpath:application.properties")
+@ConfigurationProperties
 public class ApplicationConfig {
 
 	@Value("${csrfapp.username}")
 	private String username;
-	
+
 	@Value("${csrfapp.password}")
 	private String password;
 
-	public String getUsername() {
-		return username;
+	public String getAuthUser() {
+		return this.username;
+	}
+
+	public void setAuthUser(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
-	
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

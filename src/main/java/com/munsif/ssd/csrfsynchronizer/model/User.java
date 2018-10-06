@@ -1,6 +1,6 @@
 package com.munsif.ssd.csrfsynchronizer.model;
 
-public class Credentials {
+public class User {
 
 	private String username;
 	private String password;
@@ -41,7 +41,7 @@ public class Credentials {
 
 	@Override
 	public String toString() {
-		return "Credentials [username=" + username + ", password=" + password + ", sessionID=" + sessionID + ", token=" + token + "]";
+		return "User [username=" + username + ", password=" + password + ", sessionID=" + sessionID + ", token=" + token + "]";
 	}
 
 	@Override
@@ -63,10 +63,10 @@ public class Credentials {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Credentials)) {
+		if (!(obj instanceof User)) {
 			return false;
 		}
-		Credentials other = (Credentials) obj;
+		User other = (User) obj;
 		if (password == null) {
 			if (other.password != null) {
 				return false;
