@@ -10,6 +10,8 @@ public class CsrfsynchronizerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CsrfsynchronizerApplication.class, args);
+		
+		// Initial seeding of the credentials store HashMap
 		new CredentialStore().seedCredentialStore();
 	}
 }

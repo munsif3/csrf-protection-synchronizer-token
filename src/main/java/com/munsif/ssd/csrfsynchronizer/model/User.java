@@ -1,5 +1,11 @@
 package com.munsif.ssd.csrfsynchronizer.model;
 
+/**
+ * Holds the User credential information
+ * 
+ * @author munsif
+ *
+ */
 public class User {
 
 	private String username;

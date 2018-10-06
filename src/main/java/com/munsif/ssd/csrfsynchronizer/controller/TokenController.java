@@ -19,6 +19,14 @@ public class TokenController {
 	@Autowired
 	private AuthenticationService authenticationService;
 
+	/**
+	 * Acts as the Token end-point to send the CSRF Token to the front-end. Extracts
+	 * the session ID from the request cookies. Retrieves the Token from the
+	 * HashMap.
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@GetMapping(path = "/token")
 	public String token(HttpServletRequest request) {
 		logger.debug("Synchronizer token requested...");

@@ -23,6 +23,15 @@ public class MainController {
 	@Autowired
 	private AuthenticationService authenticationService;
 
+	/**
+	 * Handles Login request. Generates sessionCookie for keeping track of the
+	 * session. Generates userCookie to keep track of the user who interacts with
+	 * the application.
+	 * 
+	 * @param credentials
+	 * @param response
+	 * @return request is redirected to the root request
+	 */
 	@PostMapping("/login")
 	public String login(@ModelAttribute User credentials, HttpServletResponse response) {
 		String username = credentials.getUsername();
@@ -40,6 +49,16 @@ public class MainController {
 		return "redirect:/login?status=failed";
 	}
 
+	/**
+	 * Handles the Add Blog request. Extracts the cookies from the request (if any).
+	 * Retrieves the sessionID from the cookie. Checks if the user is authenticated.
+	 * Validates the CSRF Token provided, with that of what is in the HashMap.
+	 * Returns with status as "success" or "failed"
+	 * 
+	 * @param blog
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("/blog")
 	public String blog(@ModelAttribute Blog blog, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();

@@ -1,5 +1,11 @@
 package com.munsif.ssd.csrfsynchronizer.model;
 
+/**
+ * Acts as the model for the state changing operation
+ * 
+ * @author munsif
+ *
+ */
 public class Blog {
 
 	private String blogname;

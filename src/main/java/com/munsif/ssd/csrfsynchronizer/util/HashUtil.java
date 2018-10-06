@@ -6,6 +6,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashUtil {
 
+	/**
+	 * Returns the Hash Value of a given string
+	 * 
+	 * @param plainText
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 */
 	public static String getHashValue(String plainText) throws NoSuchAlgorithmException {
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		return bytesToHex(digest.digest(plainText.getBytes(StandardCharsets.UTF_8)));

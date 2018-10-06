@@ -24,10 +24,8 @@ public class RouteController {
 	@GetMapping("/")
 	public String loadPage(Model model, HttpServletRequest request) {
 		if (!authenticationService.isAuthenticated(request.getCookies())) {
-			// model.addAttribute("login", new User());
 			return "redirect:/login";
 		} else {
-//			model.addAttribute("home", new Blog());
 			return "redirect:/home";
 		}
 	}
