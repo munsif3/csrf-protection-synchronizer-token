@@ -54,8 +54,6 @@ public class AuthenticationService {
 	public boolean isUserSessionValid(String username, String sessionId) {
 		logger.debug("Checking if user session is valid... " + username + ", " + sessionId);
 		if (userCredentialsStore.findCredentials(username) != null) {
-			logger.debug("user object -> " + userCredentialsStore.findCredentials(username).toString());
-			logger.debug("Validating user session..." + sessionId.equals(userCredentialsStore.findCredentials(username).getSessionID()));
 			return sessionId.equals(userCredentialsStore.findCredentials(username).getSessionID());
 		}
 		return false;
@@ -63,7 +61,6 @@ public class AuthenticationService {
 
 	public String generateSessionId(String username) {
 		logger.debug("Generating user session...");
-
 		User credentials = userCredentialsStore.findCredentials(username);
 		String sessionId = UUID.randomUUID().toString();
 		String token = UUID.randomUUID().toString();

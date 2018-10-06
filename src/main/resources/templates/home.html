@@ -11,26 +11,35 @@
 
 </head>
 <body class="container">
-	<div class="container ">
-		<div class="row">
-			<h3 class="card-title text-center site-name">Welcome to Post Me!</h3>
-			<br>
-			<form name="blog-form" action="#" th:action="@{/blog}" th:object="${home}" method="post"
-				id="blogpostForm">
+	<div class="container mx-auto">
+		<div class="row jumbotron ">
+			<div class="col-lg">
+				<form name="blog-form" action="#" th:action="@{/blog}" th:object="${home}" method="post"
+					id="blogpostForm">
+					<h3 class="card-title text-center site-name">Welcome to Post Me!</h3>
 
-				<div class="form-label-group">
-					<label for="blogNameId">Name</label> <input class="form-control" id="blogNameId"
-						name="blogname" type="text" th:field="*{blogname}" required autofocus />
-				</div>
+					<div class="form-label-group">
+						<label for="blogNameId">Name</label> <input class="form-control" id="blogNameId"
+							name="blogname" type="text" th:field="*{blogname}" required autofocus />
+					</div>
 
-				<div class="form-label-group">
-					<label for="blogBodyId">Body</label> <input class="form-control" id="blogBodyId"
-						name="blogbody" type="text" th:field="*{blogbody}" required />
-				</div>
+					<div class="form-label-group">
+						<label for="blogBodyId">Body</label> <input class="form-control" id="blogBodyId"
+							name="blogbody" type="text" th:field="*{blogbody}" required />
+					</div>
 
-				<input type="submit" name="submit" id="blog-save-btn" value="Add Post"
-					class="btn btn-outline btn-success">
-			</form>
+					<input type="submit" name="submit" id="blog-save-btn" value="Add Post"
+						class="col-sm btn btn-outline btn-success"> <br>
+
+					<div class="container-status-msg error-msg">
+						<span class="status-msg" id="failed-error">Sorry, unable to process your request!</span>
+					</div>
+
+					<div class="container-status-msg success-msg">
+						<span class="status-msg" id="success-message">Transaction completed successfully!</span>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -41,7 +50,39 @@
 	<script type="text/javascript" src="js/main.js"></script>
 
 	<script type="text/javascript">
-		window.addEventListener('load', retrieveToken);
+		window.addEventListener('load', function() {
+			retrieveToken();
+			checkStatus();
+		});
+
+		function checkStatus() {
+			var error = document.getElementById("failed-error");
+			var success = document.getElementById("success-message");
+
+			if (getParameterByName("status") && getParameterByName("status") === "failed") {
+				error.style.visibility = "visible";
+				success.style.visibility = "hidden";
+			} else if (getParameterByName("status") && getParameterByName("status") === "success") {
+				success.style.visibility = "visible";
+				error.style.visibility = "hidden";
+			} else {
+				success.style.visibility = "hidden";
+				error.style.visibility = "hidden";
+			}
+		}
+
+		function getParameterByName(name, url) {
+			if (!url)
+				url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'), results = regex.exec(url);
+			if (!results)
+				return null;
+			if (!results[2])
+				return '';
+
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
 
 		function retrieveToken() {
 			console.log('Retrieving token...');

@@ -21,19 +21,15 @@ public class TokenController {
 
 	@GetMapping(path = "/token")
 	public String token(HttpServletRequest request) {
-		logger.debug("TOKEN REQUESTED!!!");
+		logger.debug("Synchronizer token requested...");
 		String sessionId = authenticationService.sessionIdFromCookies(request.getCookies());
-		logger.info("Request received for CSRF token...");
-		logger.info("Authenticating user session...");
 		String token = "";
 		if (sessionId != null) {
 			token = new CredentialStore().findTokenForSession(sessionId);
 			logger.info("Successfully authenticated user session...");
-
 			if (token != null) {
 				return token;
 			}
-			
 		}
 		logger.error("Failed to authenticate user!");
 		return token;
