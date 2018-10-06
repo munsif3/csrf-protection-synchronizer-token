@@ -40,7 +40,8 @@ public class MainController {
 		return "redirect:/login?status=failed";
 	}
 
-	public String addBlog(@ModelAttribute Blog blog, HttpServletRequest request) {
+	@PostMapping("/blog")
+	public String blog(@ModelAttribute Blog blog, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		String blogToken = blog.getToken();
 
@@ -57,4 +58,5 @@ public class MainController {
 		logger.debug("Session Cookie is Invalid...");
 		return "redirect:/home?status=failed";
 	}
+
 }

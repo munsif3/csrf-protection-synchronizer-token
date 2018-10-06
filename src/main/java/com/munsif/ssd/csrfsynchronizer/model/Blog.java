@@ -2,24 +2,24 @@ package com.munsif.ssd.csrfsynchronizer.model;
 
 public class Blog {
 
-	private String postName;
-	private String postBody;
+	private String blogname;
+	private String blogbody;
 	private String token;
 
-	public String getPostName() {
-		return postName;
+	public String getBlogname() {
+		return blogname;
 	}
 
-	public void setPostName(String postName) {
-		this.postName = postName;
+	public void setBlogname(String blogname) {
+		this.blogname = blogname;
 	}
 
-	public String getPostBody() {
-		return postBody;
+	public String getBlogbody() {
+		return blogbody;
 	}
 
-	public void setPostBody(String postBody) {
-		this.postBody = postBody;
+	public void setBlogbody(String blogbody) {
+		this.blogbody = blogbody;
 	}
 
 	public String getToken() {
@@ -32,9 +32,6 @@ public class Blog {
 
 	@Override
 	public String toString() {
-		return "Blog [postName=" + postName + ", postBody=" + postBody + ", token=" + token + "]";
+		return "Blog [blogname=" + blogname + ", blogbody=" + blogbody + ", token=" + token + "]";
 	}
-	
-	
-
 }

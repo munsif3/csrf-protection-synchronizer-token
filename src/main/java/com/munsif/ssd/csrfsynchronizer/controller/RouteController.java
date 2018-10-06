@@ -22,12 +22,12 @@ public class RouteController {
 	AuthenticationService authenticationService;
 
 	@GetMapping("/")
-	public String showLoginPage(Model model, HttpServletRequest request) {
+	public String loadPage(Model model, HttpServletRequest request) {
 		if (!authenticationService.isAuthenticated(request.getCookies())) {
-			model.addAttribute("login", new User());
+			// model.addAttribute("login", new User());
 			return "redirect:/login";
 		} else {
-			model.addAttribute("home", new Blog());
+//			model.addAttribute("home", new Blog());
 			return "redirect:/home";
 		}
 	}
@@ -42,6 +42,7 @@ public class RouteController {
 	@GetMapping("/home")
 	public String showHomePage(Model model, HttpServletRequest request) {
 		logger.debug("Redirecting to Home...");
+		model.addAttribute("home", new Blog());
 		return "home";
 	}
 }
