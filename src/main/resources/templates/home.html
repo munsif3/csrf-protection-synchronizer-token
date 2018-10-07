@@ -42,9 +42,6 @@
 		});
 
 		function checkStatus() {
-			var error = document.getElementById("failed-error");
-			var success = document.getElementById("success-message");
-
 			if (getParameterByName("status") && getParameterByName("status") === "failed") {
 				swal("Failed to Post Blog", "Authentication failure!", "error");
 			} else if (getParameterByName("status") && getParameterByName("status") === "success") {
